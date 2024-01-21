@@ -60,11 +60,11 @@ void quick_lomuto_sort(int *array, size_t size, int left, int right)
 {
 	int section;
 
-	if (right > left)
+	if (right - left > 0)
 	{
-		section = lomuto_partition(array, size, right, left);
-		quick_lomuto_sort(array, left, section - 1, size);
-		quick_lomuto_sort(array, right, section + 1, size);
+		section = lomuto_partition(array, size, left, right);
+		quick_lomuto_sort(array, size, left, section - 1);
+		quick_lomuto_sort(array, size, section + 1, right);
 	}
 }
 
@@ -80,5 +80,5 @@ void quick_sort(int *array, size_t size)
 	{
 		return;
 	}
-	quick_lomuto_sort(array, 0, size, size - 1);
+	quick_lomuto_sort(array, size, 0, size - 1);
 }
